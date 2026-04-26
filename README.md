@@ -40,6 +40,14 @@ This repository includes Docker-based local development and an end-to-end CRM MV
 - MySQL 8.4
 - Redis 7
 
+## Tech Stack
+
+- PHP 8.3 (FPM)
+- Nginx
+- MySQL 8.4
+- Redis 7
+- Composer 2
+
 ## Local Setup
 
 ```bash
