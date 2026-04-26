@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('assigned_to')->nullable()->constrained('users')->nullOnDelete();
-            $table->morphs('related');
+            $table->nullableMorphs('related');
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('status')->default('pending');

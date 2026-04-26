@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Tenant;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +28,7 @@ new #[Layout('layouts.guest')] class extends Component
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
+        $validated['tenant_id'] = Tenant::query()->value('id');
 
         event(new Registered($user = User::create($validated)));
 

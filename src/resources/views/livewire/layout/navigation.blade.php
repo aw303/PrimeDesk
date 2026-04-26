@@ -29,16 +29,70 @@ new class extends Component
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-6 sm:-my-px sm:ms-10 sm:flex items-center overflow-x-auto">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @can('manage customers')
+                        <x-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')" wire:navigate>
+                            {{ __('Customers') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage leads')
+                        <x-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.index')" wire:navigate>
+                            {{ __('Leads') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage deals')
+                        <x-nav-link :href="route('deals.index')" :active="request()->routeIs('deals.index')" wire:navigate>
+                            {{ __('Deals') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage tasks')
+                        <x-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" wire:navigate>
+                            {{ __('Tasks') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage activities')
+                        <x-nav-link :href="route('activities.index')" :active="request()->routeIs('activities.index')" wire:navigate>
+                            {{ __('Activities') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('view reports')
+                        <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')" wire:navigate>
+                            {{ __('Reports') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage workflows')
+                        <x-nav-link :href="route('workflows.index')" :active="request()->routeIs('workflows.index')" wire:navigate>
+                            {{ __('Workflows') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('manage integrations')
+                        <x-nav-link :href="route('integrations.index')" :active="request()->routeIs('integrations.index')" wire:navigate>
+                            {{ __('Integrations') }}
+                        </x-nav-link>
+                    @endcan
 
                     @if (auth()->user()->hasRole('Admin'))
                         <x-nav-link :href="route('admin.roles')" :active="request()->routeIs('admin.roles')" wire:navigate>
                             {{ __('Roles') }}
                         </x-nav-link>
                     @endif
+
+                    @can('view audit logs')
+                        <x-nav-link :href="route('admin.audit-logs')" :active="request()->routeIs('admin.audit-logs')" wire:navigate>
+                            {{ __('Audit') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -91,11 +145,65 @@ new class extends Component
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            @can('manage customers')
+                <x-responsive-nav-link :href="route('customers.index')" :active="request()->routeIs('customers.index')" wire:navigate>
+                    {{ __('Customers') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage leads')
+                <x-responsive-nav-link :href="route('leads.index')" :active="request()->routeIs('leads.index')" wire:navigate>
+                    {{ __('Leads') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage deals')
+                <x-responsive-nav-link :href="route('deals.index')" :active="request()->routeIs('deals.index')" wire:navigate>
+                    {{ __('Deals') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage tasks')
+                <x-responsive-nav-link :href="route('tasks.index')" :active="request()->routeIs('tasks.index')" wire:navigate>
+                    {{ __('Tasks') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage activities')
+                <x-responsive-nav-link :href="route('activities.index')" :active="request()->routeIs('activities.index')" wire:navigate>
+                    {{ __('Activities') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('view reports')
+                <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')" wire:navigate>
+                    {{ __('Reports') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage workflows')
+                <x-responsive-nav-link :href="route('workflows.index')" :active="request()->routeIs('workflows.index')" wire:navigate>
+                    {{ __('Workflows') }}
+                </x-responsive-nav-link>
+            @endcan
+
+            @can('manage integrations')
+                <x-responsive-nav-link :href="route('integrations.index')" :active="request()->routeIs('integrations.index')" wire:navigate>
+                    {{ __('Integrations') }}
+                </x-responsive-nav-link>
+            @endcan
+
             @if (auth()->user()->hasRole('Admin'))
                 <x-responsive-nav-link :href="route('admin.roles')" :active="request()->routeIs('admin.roles')" wire:navigate>
                     {{ __('Roles') }}
                 </x-responsive-nav-link>
             @endif
+
+            @can('view audit logs')
+                <x-responsive-nav-link :href="route('admin.audit-logs')" :active="request()->routeIs('admin.audit-logs')" wire:navigate>
+                    {{ __('Audit') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

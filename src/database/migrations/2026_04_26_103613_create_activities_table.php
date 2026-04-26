@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->morphs('related');
+            $table->nullableMorphs('related');
             $table->string('activity_type')->default('note');
             $table->string('subject');
             $table->text('details')->nullable();

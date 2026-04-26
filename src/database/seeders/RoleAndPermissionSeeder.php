@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,11 @@ class RoleAndPermissionSeeder extends Seeder
             'manage leads',
             'manage deals',
             'manage tasks',
+            'manage activities',
             'view reports',
+            'manage workflows',
+            'manage integrations',
+            'view audit logs',
         ];
 
         foreach ($permissions as $permission) {
@@ -45,7 +50,10 @@ class RoleAndPermissionSeeder extends Seeder
             'manage leads',
             'manage deals',
             'manage tasks',
+            'manage activities',
             'view reports',
+            'manage workflows',
+            'manage integrations',
         ]);
 
         $agentRole->syncPermissions([
@@ -53,17 +61,49 @@ class RoleAndPermissionSeeder extends Seeder
             'manage leads',
             'manage deals',
             'manage tasks',
+            'manage activities',
         ]);
 
-        $admin = User::updateOrCreate(
+        $tenant = Tenant::query()->firstOrCreate(
+            ['slug' => 'primedesk-demo'],
+            [
+                'name' => 'PrimeDesk Demo',
+                'status' => 'active',
+            ]
+        );
+
+        $admin = User::query()->updateOrCreate(
             ['email' => 'admin@primedesk.local'],
             [
+                'tenant_id' => $tenant->id,
                 'name' => 'PrimeDesk Admin',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]
         );
 
+        $manager = User::query()->updateOrCreate(
+            ['email' => 'manager@primedesk.local'],
+            [
+                'tenant_id' => $tenant->id,
+                'name' => 'PrimeDesk Manager',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $agent = User::query()->updateOrCreate(
+            ['email' => 'agent@primedesk.local'],
+            [
+                'tenant_id' => $tenant->id,
+                'name' => 'PrimeDesk Agent',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
         $admin->syncRoles([$adminRole]);
+        $manager->syncRoles([$managerRole]);
+        $agent->syncRoles([$agentRole]);
     }
 }

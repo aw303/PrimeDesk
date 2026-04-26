@@ -1,19 +1,3 @@
-<?php
-
-use App\Services\DashboardService;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Title;
-use Livewire\Volt\Component;
-
-new #[Layout('layouts.app')] #[Title('Dashboard')] class extends Component
-{
-    public array $metrics = [];
-
-    public function mount(DashboardService $dashboardService): void
-    {
-        $this->metrics = $dashboardService->metrics();
-    }
-}; ?>
 
 <div class="py-6">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
