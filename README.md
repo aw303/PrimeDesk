@@ -1,6 +1,6 @@
 # PrimeDesk
 
-PrimeDesk CRM development workspace using Docker + Laravel (Blade, Livewire, Alpine).
+PrimeDesk CRM development workspace using Docker + TALL stack (Tailwind, Alpine.js, Laravel, Livewire).
 
 ## Implemented Modules
 
