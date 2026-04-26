@@ -1,21 +1,37 @@
 # PrimeDesk
 
-PrimeDesk CRM development workspace using Docker + TALL stack (Tailwind, Alpine.js, Laravel, Livewire).
+PrimeDesk CRM built with the **TALL stack**:
+- **T**ailwind CSS
+- **A**lpine.js
+- **L**aravel
+- **L**ivewire (class-based components)
 
-## Implemented Modules
+This repository includes Docker-based local development and an end-to-end CRM MVP.
 
-- Auth (Breeze + Livewire)
-- Multi-tenant foundation (Tenant model + tenant-scoped records)
-- User & Role Management (RBAC via Spatie)
-- Customers & Contacts
-- Leads (including lead-to-customer conversion)
-- Deals / Opportunities (pipeline + won/lost handling)
-- Tasks & Activities
-- Dashboard & KPI snapshots
-- Reports (lead/deal breakdown)
-- Workflow Automation (trigger/action rules)
-- Integrations registry (SMTP/Mailgun/WhatsApp/External API config records)
-- Audit Logging (create/update/delete tracking)
+## Features Implemented
+
+- Authentication (Laravel Breeze + Livewire)
+- Multi-tenant foundation (`tenants` + tenant-scoped data)
+- User roles and permissions (Spatie RBAC)
+- Customers and Contacts
+- Leads management (including lead conversion to customer)
+- Deals / Opportunities pipeline
+- Tasks and Activities
+- Dashboard KPI cards
+- Reports (lead status + deal stage breakdown)
+- Workflow automation (trigger/action records)
+- Integrations registry (SMTP, Mailgun, WhatsApp, External API)
+- Audit logging for create/update/delete events
+
+## Frontend (TALL)
+
+- Tailwind is used for all UI styling.
+- Alpine.js is actively used in CRM screens for:
+  - form toggles
+  - client-side filtering/search
+  - lightweight transitions
+- Livewire pages are implemented with **class-based components** under:
+  - `src/app/Livewire/Pages`
 
 ## Docker Stack
 
@@ -28,15 +44,10 @@ PrimeDesk CRM development workspace using Docker + TALL stack (Tailwind, Alpine.
 
 ```bash
 cp .env.example .env
-```
-
-Start Docker Desktop/daemon, then:
-
-```bash
 docker compose up -d --build
 ```
 
-Install dependencies and initialize app in containers:
+Install dependencies and initialize:
 
 ```bash
 docker compose exec app composer install
@@ -46,9 +57,10 @@ docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate --seed
 ```
 
-App URL: `http://localhost:8080`
+App URL:
+- `http://localhost:8080`
 
-## Demo Users (seeded)
+## Seeded Users
 
 - `admin@primedesk.local` / `password`
 - `manager@primedesk.local` / `password`
